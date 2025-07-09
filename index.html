@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Syong Moto & Apparel</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #0f0f0f;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .hover\:shadow-neon:hover {
+      box-shadow: 0 0 15px #00f7ff, 0 0 25px #00f7ff;
+    }
+
+    .nav-tab {
+      position: relative;
+      color: #a1a1aa;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      background: #1f1f1f;
+      border: 1px solid #3f3f46;
+    }
+
+    .nav-tab:hover {
+      background-color: #0ea5e9;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .nav-tab.active-tab {
+      background-color: #06b6d4;
+      color: black;
+      font-weight: 700;
+      box-shadow: 0 0 15px #06b6d4;
+    }
+
+    .category-section {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      display: none;
+    }
+
+    .category-section.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .design-card {
+      background-color: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .design-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px #00f7ff;
+    }
+  </style>
+</head>
+
+<body class="text-gray-200">
+  <header class="text-center py-10 bg-gradient-to-r from-cyan-500 to-blue-700 text-white shadow-lg">
+    <h1 class="text-4xl font-extrabold tracking-wide drop-shadow-lg">SYONG MOTO & APPAREL</h1>
+    <p class="mt-2 text-lg">Explore our aesthetic sublimation apparel categories</p>
+  </header>
+
+  <nav class="flex flex-wrap justify-center gap-4 p-4 bg-black sticky top-0 z-10 shadow-lg">
+    <button onclick="showCategory(event, 'basketball')" class="nav-tab active-tab">BASKETBALL JERSEY</button>
+    <button onclick="showCategory(event, 'polo')" class="nav-tab">POLOSHIRT</button>
+    <button onclick="showCategory(event, 'tshirt')" class="nav-tab">T-SHIRT</button>
+    <button onclick="showCategory(event, 'volleyball')" class="nav-tab">VOLLEYBALL JERSEY</button>
+    <button onclick="showCategory(event, 'ml')" class="nav-tab">CHINESE COLLAR</button>
+    <button onclick="showCategory(event, 'meshshort')" class="nav-tab">MESH SHORT</button>
+    <button onclick="showCategory(event, 'longsleeve')" class="nav-tab">LONG SLEEVE</button>
+    <button onclick="showCategory(event, 'balaclava')" class="nav-tab">BALACLAVA</button>
+  </nav>
+<!-- JERSEY -->
+  <main class="max-w-7xl mx-auto px-4 py-10">
+    <section id="basketball" class="category-section visible">
+      <h2 class="text-3xl font-semibold mb-8 text-cyan-400 border-b border-cyan-600 pb-2">Basketball Jerseys</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-01.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 01</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+         <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-02.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 02</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+         <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-03.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 03</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+         <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-04.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 04</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+         <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-05.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 05</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+         <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-06.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">Basketball Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+           <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-07.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">Basketball Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+           <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-08.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">Basketball Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+           <div class="design-card">
+          <img src="IMAGES/JERSEY/JERSEY-09.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">Basketball Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+<!-- POLOSHIRT -->
+    <section id="polo" class="category-section">
+      <h2 class="text-3xl font-semibold mb-8 text-yellow-400 border-b border-yellow-600 pb-2">Polo Shirts</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="design-card">
+          <img src="IMAGES/POLO/POLO-01.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="IMAGES/POLO/POLO-02.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 2</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="IMAGES/POLO/POLO-03.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 3</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="IMAGES/POLO/POLO-04.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 4</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="IMAGES/POLO/POLO-05.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 5</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="IMAGES/POLO/POLO-06.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 6</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+          <div class="design-card">
+          <img src="IMAGES/POLO/POLO-07.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 7</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+          <div class="design-card">
+          <img src="IMAGES/POLO/POLO-08.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 8</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+          <div class="design-card">
+          <img src="IMAGES/POLO/POLO-09.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">DESIGN 9</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Polo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tshirt" class="category-section">
+      <h2 class="text-3xl font-semibold mb-8 text-sky-400 border-b border-sky-600 pb-2">T-Shirts</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="design-card">
+          <img src="IMAGES/tshirt1.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">T-Shirt Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">T-Shirt</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="volleyball" class="category-section">
+      <h2 class="text-3xl font-semibold mb-8 text-purple-400 border-b border-purple-600 pb-2">Volleyball Uniforms</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="design-card">
+          <img src="IMAGES/volleyball1.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">Volleyball Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Volleyball</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ml" class="category-section">
+      <h2 class="text-3xl font-semibold mb-8 text-blue-400 border-b border-blue-600 pb-2">ML Esports Jerseys</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="design-card">
+          <img src="IMAGES/ml1.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">ML Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">ML Esports</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="meshshort" class="category-section">
+      <h2 class="text-3xl font-semibold mb-8 text-green-400 border-b border-green-600 pb-2">Mesh Shorts</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="design-card">
+          <img src="IMAGES/meshshort1.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">Mesh Short Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Mesh Short</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="longsleeve" class="category-section">
+      <h2 class="text-3xl font-semibold mb-8 text-cyan-400 border-b border-cyan-600 pb-2">Longsleeves</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="design-card">
+          <img src="IMAGES/longsleeve1.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">Longsleeve Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Longsleeve</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="balaclava" class="category-section">
+      <h2 class="text-3xl font-semibold mb-8 text-red-400 border-b border-red-600 pb-2">Balaclavas</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="design-card">
+          <img src="IMAGES/balaclava1.png" class="rounded-t-lg w-full object-cover">
+          <div class="p-4 flex justify-between items-center">
+            <h3 class="font-bold text-lg">Balaclava Design 1</h3>
+            <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Balaclava</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center py-8 bg-black border-t border-gray-700">
+    <p class="text-gray-500 text-sm">&copy; 2025 SYONG MOTO & APPAREL. Built with creativity and precision.</p>
+  </footer>
+
+  <script>
+    function showCategory(event, categoryId) {
+      document.querySelectorAll('.category-section').forEach(section => {
+        section.classList.remove('visible');
+        section.style.display = 'none';
+      });
+      const currentSection = document.getElementById(categoryId);
+      currentSection.style.display = 'block';
+      setTimeout(() => {
+        currentSection.classList.add('visible');
+      }, 10);
+
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active-tab');
+      });
+      event.target.classList.add('active-tab');
+    }
+
+    window.onload = () => {
+      const defaultTab = document.querySelector('.active-tab');
+      showCategory({ target: defaultTab }, 'basketball');
+    };
+  </script>
+</body>
+
+</html>
