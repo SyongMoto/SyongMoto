@@ -244,18 +244,87 @@
     <div class="loading-spinner"></div>
     <p class="mt-4 text-cyan-400">Loading SYONG Apparel...</p>
   </div>
-  <header class="text-center py-16 bg-black border-b border-gray-800 relative overflow-hidden">
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgxNiwxODUsMjA1LDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+')]"></div>
-    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 pointer-events-none"></div>
-    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
-      <span class="text-shadow-neon" style="text-shadow: 0 0 10px rgba(94, 234, 212, 0.9), 
-                 0 0 20px rgba(94, 234, 212, 0.7),
-                 0 0 30px rgba(129, 140, 248, 0.5),
-                 0 0 40px rgba(236, 72, 153, 0.3);">SYONG MOTO & APPAREL</span>
+<header class="text-center py-16 bg-black border-b border-gray-800 relative overflow-hidden text-white">
+  <!-- Soft Patterned Background -->
+  <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgxNiwxODUsMjA1LDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+')] bg-cover bg-center"></div>
+  <!-- Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 pointer-events-none"></div>
+  <!-- Blinking Text Animation -->
+  <style>
+    @keyframes neon-blink {
+        0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff; color: #0ff; }
+        50% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; color: #ff00ff; }
+        100% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff; color: #0ff; }
+    }
+    .blinking-neon {
+      animation: neon-blink 1.5s infinite alternate;
+}
+    @keyframes blinkGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    .animated-text {
+      background: linear-gradient(270deg, #06b6d4, #8b5cf6, #ec4899, #facc15);
+      background-size: 800% 800%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: blinkGradient 6s ease infinite;
+    }
+  </style>
+  
+  <!-- Header Content -->
+  <div class="relative z-10">
+    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight animated-text">
+      SYONG MOTO & APPAREL
     </h1>
-    <p class="mt-6 text-xl text-cyan-300 font-medium" style="text-shadow: 0 0 8px rgba(94, 234, 212, 0.6);">Explore our premium sublimation apparel collection</p>
-    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 opacity-80"></div>
-  </header>
+    <p class="mt-4 text-lg md:text-xl text-cyan-300 font-medium drop-shadow-sm">
+      Explore our premium sublimation apparel collection
+    </p>
+  </div>
+  <!-- Bottom Border -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 opacity-80"></div>
+</header>
+
+
+<!-- Plain Contact Info Bar (No Rounded Corners) -->
+<section class="bg-black px-4 py-3 border-b border-gray-800">
+  <div class="max-w-6xl mx-auto flex flex-wrap justify-center items-center gap-x-8 gap-y-2 text-sm text-gray-100 font-medium tracking-wide">
+    
+    <div class="flex items-center gap-2">
+      <span class="text-cyan-400">📍</span>
+      <span>UNIT IV, OPRRA KALUNASAN, CEBU CITY</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <span class="text-yellow-400">✉</span>
+      <span>syongmoto@apparel.com</span>
+    </div>
+
+    <a href="https://facebook.com/syongmoto" target="_blank" class="flex items-center gap-2 hover:text-blue-500 transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current text-blue-500" viewBox="0 0 24 24">
+        <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-2.9h2.5v-2.2c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.5.8-1.5 1.5v1.8h2.6L16 14.9h-2v7A10 10 0 0 0 22 12Z"/>
+      </svg>
+      <span>facebook.com/SyongMoto</span>
+    </a>
+
+    <div class="flex items-center gap-2">
+      <span class="text-green-400">📞</span>
+      <span>+63 912 345 6789</span>
+    </div>
+
+  </div>
+</section>
+
+
+
+
 
     <!-- Floating Messenger Icon (Right Side) -->
 <a href="https://m.me/YOUR_PAGE_USERNAME" target="_blank" aria-label="Messenger Chat"
@@ -635,19 +704,24 @@
     <p class="text-center text-sm text-gray-500 mt-6">We typically respond within 24 hours. Let’s get started!</p>
   </div>
 </section>
+<footer class="text-center py-8 bg-black border-t border-gray-700">
+  <a href="https://www.facebook.com/SyongMoto/" target="_blank" class="inline-flex items-center gap-2 text-blue-400 hover:underline text-sm">
+    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+      <path
+        d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.406.595 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.66-4.788 1.325 0 2.463.098 2.796.143v3.24l-1.918.001c-1.503 0-1.796.715-1.796 1.763v2.313h3.59l-.467 3.622h-3.123V24h6.117c.73 0 1.324-.594 1.324-1.326V1.326C24 .595 23.406 0 22.675 0z" />
+    </svg>
+    Visit our Facebook Page
+  </a>
 
-
-
-  <footer class="text-center py-8 bg-black border-t border-gray-700">
-    <a href="https://www.facebook.com/SyongMoto/" target="_blank" class="inline-flex items-center gap-2 text-blue-400 hover:underline text-sm">
-  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-    <path
-      d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.406.595 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.66-4.788 1.325 0 2.463.098 2.796.143v3.24l-1.918.001c-1.503 0-1.796.715-1.796 1.763v2.313h3.59l-.467 3.622h-3.123V24h6.117c.73 0 1.324-.594 1.324-1.326V1.326C24 .595 23.406 0 22.675 0z" />
-  </svg>
-  Visit our Facebook Page
+  <p class="text-gray-500 text-sm mt-2">
+    &copy; 2025 SYONG MOTO & APPAREL. Built with creativity and precision.
+  </p>
+ <a href="https://facebook.com/Walakiiin" target="_blank" class="block text-center text-xs select-none blinking-neon hover:underline">
+  &copy; 2025 Developed by Ralph Joaquin S. Villarin
 </a>
-    <p class="text-gray-500 text-sm">&copy; 2025 SYONG MOTO & APPAREL. Built with creativity and precision.</p>
-  </footer>
+
+</div>
+</footer>
 
   <!-- Scroll to Top Button -->
   <button id="scrollToTop" class="fixed bottom-20 right-6 z-50 bg-cyan-600 hover:bg-cyan-700 text-white p-3 rounded-full shadow-lg transition duration-300 opacity-0 invisible">
