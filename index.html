@@ -7,74 +7,254 @@
   <title>Syong Moto & Apparel</title>
    <link rel="icon" type="image/x-icon" href="IMAGES/ICO.ico">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    .text-shadow-neon {
+      text-shadow: 0 0 10px rgba(94, 234, 212, 0.9), 
+                   0 0 20px rgba(94, 234, 212, 0.7),
+                   0 0 30px rgba(129, 140, 248, 0.5),
+                   0 0 40px rgba(236, 72, 153, 0.3);
+      animation: neon-pulse 1.5s ease-in-out infinite alternate,
+                 color-shift 8s linear infinite;
+    }
+
+    @keyframes color-shift {
+      0% { color: #5eead4; }
+      25% { color: #818cf8; }
+      50% { color: #ec4899; }
+      75% { color: #f59e0b; }
+      100% { color: #5eead4; }
+    }
+    @media (max-width: 640px) {
+      .nav-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+  <style>
+    /* Loading Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .loading-spinner {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      border: 4px solid transparent;
+      border-radius: 50%;
+      border-top-color: #5eead4;
+      border-bottom-color: #818cf8;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 10px rgba(94, 234, 212, 0.5),
+                  0 0 20px rgba(129, 140, 248, 0.3);
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f0f0f;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
     html {
       scroll-behavior: smooth;
     }
+    .lazy-load {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .lazy-load.loaded {
+      opacity: 1;
+    }
 
     body {
-      background-color: #0f0f0f;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+      color: #e0e0e0;
+    }
+
+    @keyframes neon-pulse {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
     }
 
     .hover\:shadow-neon:hover {
-      box-shadow: 0 0 15px #00f7ff, 0 0 25px #00f7ff;
+      box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+      animation: neon-pulse 1.5s infinite;
+    }
+
+    .neon-border {
+      position: relative;
+    }
+    .neon-border::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .neon-border:hover::after {
+      opacity: 0.7;
     }
 
     .nav-tab {
       position: relative;
-      color: #a1a1aa;
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      transition: all 0.3s ease;
-      background: #1f1f1f;
-      border: 1px solid #3f3f46;
+      color: #d1d5db;
+      padding: 0.6rem 1.5rem;
+      border-radius: 0.5rem;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(94, 234, 212, 0.2);
+      backdrop-filter: blur(4px);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transform-style: preserve-3d;
+    }
+
+    .nav-tab::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 0.6rem;
+      background: linear-gradient(45deg, 
+                rgba(94, 234, 212, 0.8), 
+                rgba(129, 140, 248, 0.8),
+                rgba(236, 72, 153, 0.8));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
     .nav-tab:hover {
-      background-color: #0ea5e9;
       color: white;
-      transform: translateY(-2px);
+      transform: translateY(-4px) scale(1.05);
+      border-color: rgba(94, 234, 212, 0.5);
+      box-shadow: 0 5px 20px rgba(94, 234, 212, 0.4);
+    }
+
+    .nav-tab:hover::before {
+      opacity: 0.3;
     }
 
     .nav-tab.active-tab {
-      background-color: #06b6d4;
-      color: black;
+      color: white;
+      background: rgba(6, 182, 212, 0.2);
+      border-color: rgba(94, 234, 212, 0.8);
+      box-shadow: 0 0 25px rgba(94, 234, 212, 0.5);
       font-weight: 700;
-      box-shadow: 0 0 15px #06b6d4;
+      transform: translateY(-2px) scale(1.03);
+      animation: tab-pulse 1.5s infinite alternate;
+    }
+
+    @keyframes tab-pulse {
+      0% { box-shadow: 0 0 15px rgba(94, 234, 212, 0.5); }
+      100% { box-shadow: 0 0 25px rgba(94, 234, 212, 0.8); }
     }
 
     .category-section {
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       opacity: 0;
-      transform: translateY(20px);
+      transform: perspective(1000px) rotateX(-15deg) translateY(30px);
       display: none;
+      filter: blur(2px);
     }
 
     .category-section.visible {
       display: block;
       opacity: 1;
-      transform: translateY(0);
+      transform: perspective(1000px) rotateX(0) translateY(0);
+      filter: blur(0);
     }
 
     .design-card {
-      background-color: #1c1c1c;
-      border: 1px solid #2a2a2a;
+      background: linear-gradient(145deg, #111827, #1e293b);
+      border: 1px solid rgba(94, 234, 212, 0.1);
       border-radius: 1rem;
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transform-style: preserve-3d;
     }
 
+    .design-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, 
+                rgba(94, 234, 212, 0.3) 0%, 
+                transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .design-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+                rgba(94, 234, 212, 0.15) 0%, 
+                rgba(129, 140, 248, 0.1) 50%, 
+                rgba(236, 72, 153, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
     .design-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 20px #00f7ff;
+      transform: translateY(-8px) scale(1.03) rotateY(5deg);
+      box-shadow: 0 15px 30px -5px rgba(94, 234, 212, 0.5);
+      border-color: rgba(94, 234, 212, 0.5);
+    }
+
+    .design-card:hover::after {
+      opacity: 0.6;
+    }
+    .design-card:hover::before {
+      opacity: 1;
+    }
+    .design-card img {
+      transition: transform 0.4s ease;
+    }
+    .design-card:hover img {
+      transform: scale(1.05);
     }
   </style>
 </head>
 
 <body class="text-gray-200">
-  <header class="text-center py-10 bg-gradient-to-r from-cyan-500 to-blue-700 text-white shadow-lg">
-    <h1 class="text-4xl font-extrabold tracking-wide drop-shadow-lg">SYONG MOTO & APPAREL</h1>
-    <p class="mt-2 text-lg">Explore our aesthetic sublimation apparel categories</p>
+  <div id="loading">
+    <div class="loading-spinner"></div>
+    <p class="mt-4 text-cyan-400">Loading SYONG Apparel...</p>
+  </div>
+  <header class="text-center py-16 bg-black border-b border-gray-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgxNiwxODUsMjA1LDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+')]"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 pointer-events-none"></div>
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
+      <span class="text-shadow-neon" style="text-shadow: 0 0 10px rgba(94, 234, 212, 0.9), 
+                 0 0 20px rgba(94, 234, 212, 0.7),
+                 0 0 30px rgba(129, 140, 248, 0.5),
+                 0 0 40px rgba(236, 72, 153, 0.3);">SYONG MOTO & APPAREL</span>
+    </h1>
+    <p class="mt-6 text-xl text-cyan-300 font-medium" style="text-shadow: 0 0 8px rgba(94, 234, 212, 0.6);">Explore our premium sublimation apparel collection</p>
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 opacity-80"></div>
   </header>
 
     <!-- Floating Messenger Icon (Right Side) -->
@@ -101,8 +281,13 @@
     <section id="basketball" class="category-section visible">
       <h2 class="text-3xl font-semibold mb-8 text-cyan-400 border-b border-cyan-600 pb-2">Basketball Jerseys</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="design-card">
-          <img src="IMAGES/JERSEY/JERSEY-01.png" class="rounded-t-lg w-full object-cover">
+        <div class="design-card group">
+          <img 
+            src="IMAGES/JERSEY/JERSEY-01.png" 
+            class="rounded-t-lg w-full object-cover lazy-load"
+            loading="lazy"
+            alt="Basketball Jersey Design 01"
+            onload="this.classList.add('loaded')">
           <div class="p-4 flex justify-between items-center">
             <h3 class="font-bold text-lg">DESIGN 01</h3>
             <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
@@ -139,28 +324,28 @@
          <div class="design-card">
           <img src="IMAGES/JERSEY/JERSEY-06.png" class="rounded-t-lg w-full object-cover">
           <div class="p-4 flex justify-between items-center">
-            <h3 class="font-bold text-lg">Basketball Design 1</h3>
+            <h3 class="font-bold text-lg">DESIGN 06</h3>
             <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
           </div>
         </div>
            <div class="design-card">
           <img src="IMAGES/JERSEY/JERSEY-07.png" class="rounded-t-lg w-full object-cover">
           <div class="p-4 flex justify-between items-center">
-            <h3 class="font-bold text-lg">Basketball Design 1</h3>
+            <h3 class="font-bold text-lg">DESIGN 07</h3>
             <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
           </div>
         </div>
            <div class="design-card">
           <img src="IMAGES/JERSEY/JERSEY-08.png" class="rounded-t-lg w-full object-cover">
           <div class="p-4 flex justify-between items-center">
-            <h3 class="font-bold text-lg">Basketball Design 1</h3>
+            <h3 class="font-bold text-lg">DESIGN 08</h3>
             <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
           </div>
         </div>
            <div class="design-card">
           <img src="IMAGES/JERSEY/JERSEY-09.png" class="rounded-t-lg w-full object-cover">
           <div class="p-4 flex justify-between items-center">
-            <h3 class="font-bold text-lg">Basketball Design 1</h3>
+            <h3 class="font-bold text-lg">DESIGN 09</h3>
             <span class="bg-gray-700 text-xs px-2 py-1 rounded-full">Basketball</span>
           </div>
         </div>
@@ -317,14 +502,14 @@
   </main>
 <section id="inquire" class="mt-20 px-4">
   <div class="max-w-3xl mx-auto bg-[#1a1a1a] border border-gray-700 rounded-xl shadow-xl p-8">
-    <h2 class="text-3xl font-bold text-cyan-400 text-center mb-4">How to Inquire</h2>
+    <h2 class="text-3xl font-bold text-cyan-400 text-center mb-4">How to Inquire?</h2>
     <p class="text-center text-gray-300 text-base mb-8">
       Want to place an order or ask about a custom design? Reach out using any of the options below.
     </p>
 
     <div class="flex flex-col sm:flex-row justify-center gap-6 text-center">
       <!-- Facebook -->
-      <a href="https://www.facebook.com/profile.php?id=100064819761744" target="_blank"
+      <a href="https://www.facebook.com/SyongMoto/" target="_blank"
         class="flex-1 flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 transition text-white font-medium py-3 px-6 rounded-lg shadow-lg hover:shadow-blue-500/40">
         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
           <path
@@ -349,7 +534,7 @@
 
 
   <footer class="text-center py-8 bg-black border-t border-gray-700">
-    <a href="https://www.facebook.com/profile.php?id=100064819761744" target="_blank" class="inline-flex items-center gap-2 text-blue-400 hover:underline text-sm">
+    <a href="https://www.facebook.com/SyongMoto/" target="_blank" class="inline-flex items-center gap-2 text-blue-400 hover:underline text-sm">
   <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
     <path
       d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.406.595 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.66-4.788 1.325 0 2.463.098 2.796.143v3.24l-1.918.001c-1.503 0-1.796.715-1.796 1.763v2.313h3.59l-.467 3.622h-3.123V24h6.117c.73 0 1.324-.594 1.324-1.326V1.326C24 .595 23.406 0 22.675 0z" />
@@ -359,8 +544,15 @@
     <p class="text-gray-500 text-sm">&copy; 2025 SYONG MOTO & APPAREL. Built with creativity and precision.</p>
   </footer>
 
+  <!-- Scroll to Top Button -->
+  <button id="scrollToTop" class="fixed bottom-20 right-6 z-50 bg-cyan-600 hover:bg-cyan-700 text-white p-3 rounded-full shadow-lg transition duration-300 opacity-0 invisible">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+    </svg>
+  </button>
+
   <!-- Messenger Floating Icon -->
-  <a href="https://www.facebook.com/profile.php?id=100064819761744" target="_blank" aria-label="Messenger Chat"
+  <a href="https://www.facebook.com/SyongMoto/" target="_blank" aria-label="Messenger Chat"
      class="fixed bottom-6 right-6 z-50 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition duration-300">
     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 32 32" class="h-6 w-6">
       <path d="M16 0C7.164 0 0 6.716 0 15c0 4.703 2.324 8.903 6.086 11.706V32l5.59-3.066c1.343.373 2.768.566 4.324.566 8.836 0 16-6.716 16-15S24.836 0 16 0zm2.19 19.5l-3.91-4.125-6.874 4.125 7.719-8.25 3.91 4.125 6.874-4.125-7.719 8.25z"/>
@@ -368,6 +560,50 @@
   </a>
 
   <script>
+    // Hide loading screen when page loads
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loading').style.opacity = '0';
+        setTimeout(function() {
+          document.getElementById('loading').style.display = 'none';
+        }, 500);
+      }, 800);
+    });
+
+    // Scroll to top button
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+        scrollToTopBtn.classList.add('opacity-100', 'visible');
+      } else {
+        scrollToTopBtn.classList.add('opacity-0', 'invisible');
+        scrollToTopBtn.classList.remove('opacity-100', 'visible');
+      }
+    });
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Lazy load images
+    document.addEventListener('DOMContentLoaded', function() {
+      const lazyImages = document.querySelectorAll('.lazy-load');
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src || img.src;
+            img.classList.add('loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+      lazyImages.forEach(img => imageObserver.observe(img));
+    });
+
     function showCategory(event, categoryId) {
       document.querySelectorAll('.category-section').forEach(section => {
         section.classList.remove('visible');
