@@ -165,11 +165,35 @@
       animation: tab-pulse 1.5s infinite alternate;
     }
 
-    @keyframes tab-pulse {
-      0% { box-shadow: 0 0 15px rgba(94, 234, 212, 0.5); }
-      100% { box-shadow: 0 0 25px rgba(94, 234, 212, 0.8); }
-    }
-
+ @keyframes dotsFade {
+  0%, 80%, 100% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+.dots-loader {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+.dots-loader div {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #0ff;
+  animation: dotsFade 1.2s infinite ease-in-out;
+}
+.dots-loader div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dots-loader div:nth-child(3) {
+  animation-delay: 0.4s;
+}
     .category-section {
       transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       opacity: 0;
@@ -240,10 +264,16 @@
 </head>
 
 <body class="text-gray-200">
-  <div id="loading">
-    <div class="loading-spinner"></div>
-    <p class="mt-4 text-cyan-400">Loading SYONG Apparel...</p>
+<div id="loading" class="min-h-screen flex flex-col justify-center items-center bg-black text-center text-gray-200">
+  <div class="dots-loader mb-4">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
+  <p class="text-xl font-semibold text-cyan-400 animate-pulse tracking-wide" style="text-shadow: 0 0 10px #0ff, 0 0 20px #f0f, 0 0 30px #0ff;">
+    Welcome to Syong Moto & Apparel
+  </p>
+</div>
 <header class="text-center py-16 bg-black border-b border-gray-800 relative overflow-hidden text-white">
   <!-- Soft Patterned Background -->
   <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgxNiwxODUsMjA1LDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+')] bg-cover bg-center"></div>
@@ -321,13 +351,8 @@
 
   </div>
 </section>
-
-
-
-
-
     <!-- Floating Messenger Icon (Right Side) -->
-<a href="https://m.me/YOUR_PAGE_USERNAME" target="_blank" aria-label="Messenger Chat"
+<a href="https://m.me/SyongMoto" target="_blank" aria-label="Messenger Chat"
    class="fixed bottom-6 right-6 z-50 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition duration-300">
   <!-- Messenger SVG Icon -->
   <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 32 32" class="h-6 w-6">
@@ -716,9 +741,35 @@
   <p class="text-gray-500 text-sm mt-2">
     &copy; 2025 SYONG MOTO & APPAREL. Built with creativity and precision.
   </p>
- <a href="https://facebook.com/Walakiiin" target="_blank" class="block text-center text-xs select-none blinking-neon hover:underline">
-  &copy; 2025 Developed by Ralph Joaquin S. Villarin
+<a href="javascript:void(0)" onclick="showLoaderAndRedirect()" class="gradient-blink text-sm">
+  Developed by Ralph Joaquin S. Villarin
 </a>
+
+<!-- STYLE FOR RALPH -->
+<style>
+  .gradient-blink {
+    font-weight: 500;
+    font-size: 0.875rem; /* Tailwind's text-sm equivalent */
+    letter-spacing: 0.5px;
+    background: linear-gradient(45deg, #00f0ff, #ff00f7, #00ff88, #ffae00);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientBlink 3s infinite alternate;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @keyframes gradientBlink {
+    0%, 100% {
+      opacity: 1;
+      background-position: 0% 50%;
+    }
+    50% {
+      opacity: 0.3;
+      background-position: 100% 50%;
+    }
+  }
+</style>
 
 </div>
 </footer>
@@ -731,14 +782,27 @@
   </button>
 
   <!-- Messenger Floating Icon -->
-  <a href="https://www.facebook.com/SyongMoto/" target="_blank" aria-label="Messenger Chat"
+  <a href="https://m.me/SyongMoto" target="_blank" aria-label="Messenger Chat"
      class="fixed bottom-6 right-6 z-50 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition duration-300">
     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 32 32" class="h-6 w-6">
       <path d="M16 0C7.164 0 0 6.716 0 15c0 4.703 2.324 8.903 6.086 11.706V32l5.59-3.066c1.343.373 2.768.566 4.324.566 8.836 0 16-6.716 16-15S24.836 0 16 0zm2.19 19.5l-3.91-4.125-6.874 4.125 7.719-8.25 3.91 4.125 6.874-4.125-7.719 8.25z"/>
     </svg>
   </a>
+<!-- Loading Overlay -->
+<div id="loader" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
+  <div class="text-white text-lg font-semibold animate-pulse">Loading...</div>
+</div>
 
   <script>
+    function showLoaderAndRedirect() {
+    const loader = document.getElementById('loader');
+    loader.classList.remove('hidden');
+
+    // Delay the redirect slightly so the loader is visible
+    setTimeout(() => {
+      window.location.href = 'https://www.facebook.com/Walakiiin'; // Replace with actual FB URL
+    }, 2000); // 1 second delay
+  }
     // Hide loading screen when page loads
     window.addEventListener('load', function() {
       setTimeout(function() {
