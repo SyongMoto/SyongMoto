@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sublima - Sublimation Pricing</title>
+  <link rel="icon" type="image/x-icon" href="IMAGES/ICO.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f0f0f;
+      color: white;
+    }
+    .glow-button {
+      background: linear-gradient(90deg, #00ffe0, #ff00e0);
+      background-size: 200% 200%;
+      animation: glow 4s ease infinite;
+      color: white;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 10px #00ffe0aa;
+    }
+    .glow-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ff00e0aa, 0 0 30px #00ffe0aa;
+    }
+    @keyframes glow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .card {
+      background: #1a1a1a;
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.05);
+    }
+    .card:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+    }
+    .price {
+      color: #00ffe0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .note {
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+    .feature-icon::before {
+      content: '✔️ ';
+      margin-right: 0.3rem;
+    }
+  </style>
+</head>
+<body class="px-6 py-10">
+  <section class="max-w-7xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-6">Full Sublimation Pricing</h2>
+    <div class="text-center text-sm text-gray-400 mb-6">
+      <p>📌 <strong>Minimum order:</strong> 10 - 15 pcs per orders</p>
+      <p>💰 <strong>50% down payment</strong> required before production</p>
+      <p>🕚 <strong>Processing Time:</strong> 3 - 7 days production</p>
+    </div>
+    <div id="pricing-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+    <div class="text-center mt-12">
+      <button onclick="location.href='index.html'" class="glow-button">Show Example Designs</button>
+    </div>
+  </section>
+
+  <script>
+    const products = [
+      { name: "Basketball Jersey", price: { upper: "300-350", set: "650-700" }, fabric: "Polydex Premium - 200 GSM", features: ["Free Layout", "Free Banner", "Free Muse", "Free Coach", "100% High Quality"], type: true, pocket: true, nbaCut: true },
+      { name: "Poloshirt", price: { upper: "500-550" }, fabric: "Polydex Premium - 200 GSM", features: ["Free Layout", "100% High Quality"], pocket: true },
+      { name: "T-Shirt", price: { upper: "350-400" }, fabric: "Polydex Premium - 200 GSM", features: ["Free Layout", "100% High Quality"] },
+      { name: "Esports Jersey (T-Shirt)", price: { upper: "400-450" }, fabric: "Polydex Premium - 200 GSM", features: ["Free Layout", "Free Banner", "Free Muse", "Free Coach", "100% High Quality"] },
+      { name: "Chinese Collar", price: { upper: "500-550" }, fabric: "Polydex Premium - 200 GSM", features: ["Free Layout", "100% High Quality"], pocket: true },
+      { name: "Warmer", price: { upper: "500-600" }, fabric: "Polydex Premium - 200 GSM", features: ["Free Layout", "100% High Quality"] },
+      { name: "Mesh Short", price: { upper: "400-450" }, fabric: "Mesh Fabric", features: ["100% High Quality"] },
+      { name: "Long Sleeve", price: { upper: "500-600" }, fabric: "Polydex Premium - 200 GSM", features: ["Free Layout", "Free Balaclava", "100% High Quality"] },
+      { name: "Balaclava", price: { upper: "100-150" }, fabric: "Spandex / Dryfit", features: ["Free Layout", "100% High Quality"] }
+    ];
+
+    const container = document.getElementById("pricing-cards");
+
+    products.forEach((p, i) => {
+      const typeSelect = p.type ? `
+        <div class="flex justify-center items-center mt-3">
+          <label class="text-sm mr-2 text-gray-300">Type:</label>
+          <select class="jersey-type-selector text-black rounded px-2 py-1 text-sm" data-index="${i}" data-name="${p.name}">
+            <option value="upper">Upper Only</option>
+            <option value="set">Set</option>
+          </select>
+        </div>` : "";
+
+      let cutCheck = "";
+      if (p.nbaCut || p.pocket) {
+        cutCheck = `
+          <div class="flex flex-wrap justify-center items-center gap-4 mt-2 cut-wrapper" data-index="${i}">
+            ${p.nbaCut ? `
+              <label class="text-sm text-gray-300">
+                <input type="checkbox" class="regular-toggle mr-1" data-index="${i}" name="cut-${i}"> Regular Cut
+              </label>
+              <label class="text-sm text-gray-300">
+                <input type="checkbox" class="nba-toggle mr-1" data-index="${i}" name="cut-${i}"> NBA Cut (+₱50)
+              </label>
+            ` : ""}
+            ${p.pocket ? `
+              <label class="text-sm text-gray-300 pocket-wrapper" data-index="${i}" style="display: ${p.name === 'Basketball Jersey' ? 'none' : 'inline-flex'};">
+                <input type="checkbox" class="pocket-toggle mr-1" data-index="${i}"> Add Pocket (+₱50)
+              </label>
+            ` : ""}
+          </div>`;
+      }
+
+      const featureList = p.features.map(f => `<li class="feature-icon text-sm text-gray-300">${f}</li>`).join("");
+
+      const card = document.createElement('div');
+      card.className = "card";
+      card.innerHTML = `
+        <h3 class="text-xl font-semibold text-center mb-2">${p.name}</h3>
+        <p class="price text-center mb-1" ${Object.entries(p.price).map(([k, v]) => `data-${k}="${v}"`).join(" ")}>₱${p.price.upper}</p>
+        <p class="text-sm text-center text-cyan-400 font-medium">Fabric: ${p.fabric}</p>
+        ${typeSelect}
+        ${cutCheck}
+        <ul class="mt-4 space-y-1">${featureList}</ul>
+        <p class="note mt-4 italic text-center">Contact us on facebook when have any inquiries.</p>
+      `;
+      container.appendChild(card);
+    });
+
+    const updatePrice = (index) => {
+      const card = document.querySelectorAll('.card')[index];
+      const priceEl = card.querySelector('.price');
+      const selector = card.querySelector('.jersey-type-selector');
+      const pocketCheckbox = card.querySelector('.pocket-toggle');
+      const pocketWrapper = card.querySelector('.pocket-wrapper');
+      const regularCheckbox = card.querySelector('.regular-toggle');
+      const nbaCheckbox = card.querySelector('.nba-toggle');
+      let base;
+
+      if (selector) {
+        const type = selector.value;
+        base = priceEl.dataset[type].split('-').map(n => parseInt(n));
+        const productName = selector.getAttribute('data-name');
+
+        if (pocketWrapper) {
+          pocketWrapper.style.display = (productName === 'Basketball Jersey' && type === 'set') ? 'inline-flex' : (productName === 'Basketball Jersey' ? 'none' : 'inline-flex');
+        }
+      } else {
+        base = priceEl.dataset.upper.split('-').map(n => parseInt(n));
+      }
+
+      let added = 0;
+      if (pocketCheckbox?.checked && pocketWrapper?.style.display !== 'none') {
+        added += 50;
+      }
+      if (nbaCheckbox?.checked) {
+        added += 50;
+      }
+
+      priceEl.textContent = `₱${base[0] + added} - ₱${base[1] + added}`;
+    };
+
+    document.querySelectorAll('.jersey-type-selector').forEach((selector, index) => {
+      selector.addEventListener('change', () => updatePrice(index));
+    });
+
+    document.querySelectorAll('.pocket-toggle').forEach((checkbox, index) => {
+      checkbox.addEventListener('change', () => updatePrice(index));
+    });
+
+    document.querySelectorAll('.nba-toggle').forEach((checkbox, index) => {
+      checkbox.addEventListener('change', () => {
+        const regular = document.querySelectorAll('.regular-toggle')[index];
+        if (checkbox.checked) regular.checked = false;
+        updatePrice(index);
+      });
+    });
+
+    document.querySelectorAll('.regular-toggle').forEach((checkbox, index) => {
+      checkbox.addEventListener('change', () => {
+        const nba = document.querySelectorAll('.nba-toggle')[index];
+        if (checkbox.checked) nba.checked = false;
+        updatePrice(index);
+      });
+    });
+  </script>
+</body>
+</html>
